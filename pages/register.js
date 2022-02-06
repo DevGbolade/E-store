@@ -33,7 +33,7 @@ export default function Register() {
     if (userInfo) {
       router.push("/");
     }
-  }, []);
+  });
 
   const classes = useStyles();
   const submitHandler = async ({ name, email, password, confirmPassword }) => {

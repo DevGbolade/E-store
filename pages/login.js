@@ -33,7 +33,7 @@ export default function Login() {
     if (userInfo) {
       router.push("/");
     }
-  }, []);
+  }, [userInfo]);
 
   const classes = useStyles();
   const submitHandler = async ({ email, password }) => {

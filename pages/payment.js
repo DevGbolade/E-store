@@ -32,7 +32,7 @@ export default function Payment() {
     } else {
       setPaymentMethod(Cookies.get("paymentMethod") || "");
     }
-  }, []);
+  });
   const submitHandler = (e) => {
     closeSnackbar();
     e.preventDefault();
