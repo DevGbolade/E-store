@@ -41,7 +41,7 @@ function Map() {
       }
     };
     fetchGoogleApiKey();
-  });
+  }, []);
 
   const getUserCurrentLocation = () => {
     if (!navigator.geolocation) {
