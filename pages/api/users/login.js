@@ -3,8 +3,11 @@ import bcrypt from "bcryptjs";
 import User from "../../../models/User";
 import db from "../../../utils/db";
 import { signToken } from "../../../utils/auth";
+import { allowCorsMiddleware } from "../../../utils/allowCors";
 
 const handler = nc();
+
+handler.use(allowCorsMiddleware);
 
 handler.post(async (req, res) => {
   await db.connect();
