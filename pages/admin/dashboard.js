@@ -14,13 +14,12 @@ import {
   ListItemText,
   CardContent,
   CardActions,
-} from "@material-ui/core";
-
+} from "@mui/material";
 import { Bar } from "react-chartjs-2";
 import { getError } from "../../utils/error";
 import { Store } from "../../utils/Store";
 import Layout from "../../components/Layout";
-import useStyles from "../../utils/styles";
+import classes from "../../utils/classes";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -38,7 +37,7 @@ function reducer(state, action) {
 function AdminDashboard() {
   const { state } = useContext(Store);
   const router = useRouter();
-  const classes = useStyles();
+
   const { userInfo } = state;
 
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
@@ -68,7 +67,7 @@ function AdminDashboard() {
     <Layout title="Admin Dashboard">
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <NextLink href="/admin/dashboard" passHref>
                 <ListItem selected button component="a">
@@ -94,13 +93,13 @@ function AdminDashboard() {
           </Card>
         </Grid>
         <Grid item md={9} xs={12}>
-          <Card className={classes.section}>
+          <Card sx={classes.section}>
             <List>
               <ListItem>
                 {loading ? (
                   <CircularProgress />
                 ) : error ? (
-                  <Typography className={classes.error}>{error}</Typography>
+                  <Typography sx={classes.error}>{error}</Typography>
                 ) : (
                   <Grid container spacing={5}>
                     <Grid item md={3}>
@@ -180,7 +179,6 @@ function AdminDashboard() {
                 </Typography>
               </ListItem>
               <ListItem>
-                {/* {console.log({ summary })} */}
                 <Bar
                   data={{
                     labels: summary.salesData.map((x) => x._id),

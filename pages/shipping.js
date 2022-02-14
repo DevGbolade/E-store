@@ -1,18 +1,12 @@
-import {
-  List,
-  ListItem,
-  Typography,
-  TextField,
-  Button,
-} from "@material-ui/core";
+import { List, ListItem, Typography, TextField, Button } from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import Layout from "../components/Layout";
 import { Store } from "../utils/Store";
-import useStyles from "../utils/styles";
 import Cookies from "js-cookie";
 import { Controller, useForm } from "react-hook-form";
 import CheckoutWizard from "../components/CheckoutWizard";
+import Form from "../components/Form";
 
 export default function Shipping() {
   const {
@@ -29,6 +23,7 @@ export default function Shipping() {
     cart: { shippingAddress },
   } = state;
   const { location } = shippingAddress;
+
   useEffect(() => {
     if (!userInfo) {
       router.push("/login?redirect=/shipping");
@@ -38,15 +33,13 @@ export default function Shipping() {
     setValue("city", shippingAddress.city);
     setValue("postalCode", shippingAddress.postalCode);
     setValue("country", shippingAddress.country);
-  });
+  }, []);
 
-  const classes = useStyles();
   const submitHandler = ({ fullName, address, city, postalCode, country }) => {
     dispatch({
       type: "SAVE_SHIPPING_ADDRESS",
       payload: { fullName, address, city, postalCode, country, location },
     });
-
     Cookies.set(
       "shippingAddress",
       JSON.stringify({
@@ -71,7 +64,6 @@ export default function Shipping() {
       type: "SAVE_SHIPPING_ADDRESS",
       payload: { fullName, address, city, postalCode, country },
     });
-
     Cookies.set(
       "shippingAddress",
       JSON.stringify({
@@ -83,13 +75,12 @@ export default function Shipping() {
         location,
       })
     );
-
     router.push("/map");
   };
   return (
     <Layout title="Shipping Address">
       <CheckoutWizard activeStep={1} />
-      <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
+      <Form onSubmit={handleSubmit(submitHandler)}>
         <Typography component="h1" variant="h1">
           Shipping Address
         </Typography>
@@ -238,6 +229,7 @@ export default function Shipping() {
             <Button
               variant="contained"
               type="button"
+              color="secondary"
               onClick={chooseLocationHandler}
             >
               Choose on map
@@ -252,7 +244,7 @@ export default function Shipping() {
             </Button>
           </ListItem>
         </List>
-      </form>
+      </Form>
     </Layout>
   );
 }
