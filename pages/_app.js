@@ -3,7 +3,7 @@ import { SnackbarProvider } from "notistack";
 import { StoreProvider } from "../utils/Store";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../utils/createEmotionCache";
-
+import "../styles/globals.css";
 const clientSideEmotionCache = createEmotionCache();
 
 function MyApp(props) {

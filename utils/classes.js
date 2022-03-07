@@ -63,7 +63,6 @@ const classes = {
   menuButton: { padding: 0 },
 
   // search
-
   searchForm: {
     border: "1px solid #ffffff",
     backgroundColor: "#ffffff",
