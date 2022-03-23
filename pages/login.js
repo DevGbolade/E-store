@@ -56,6 +56,14 @@ export default function Login() {
           Login
         </Typography>
         <List>
+          <div className="flex justify-center items-center">
+            <div className="flex flex-col">
+              <p>Login as either admin/user:</p>
+              <span>email: admin@example.com</span>
+              <span>user: user@example.com</span>
+              <span>password: 123456</span>
+            </div>
+          </div>
           <ListItem>
             <Controller
               name="email"
